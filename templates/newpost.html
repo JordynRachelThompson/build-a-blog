@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>What would you like to write?</h1>
+<form method="POST">
+
+        <label for="title_field">Entry Title</label>
+        <input id="title_field" name="title" type="text" value="{{entry_title}}">
+        <hr/>
+        <label for="body_field">Entry Body</label>
+        <textarea rows="4" cols="50" id="body_field" name="body" >{{body_entry}}</textarea>
+        <hr/>
+    <input id="submit_button" type="submit" value="Save">
+</form>
+
+{% endblock %}

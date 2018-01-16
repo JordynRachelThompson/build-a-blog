@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div id="Links">
+        <a class="navlink" href="/blog">Blog Home Page</a>
+        <a class="navlink" href="/newpost">Add New Post</a>
+    </div>
+
+    <hr />
+
+    {% if blogs|length == 0 %}
+        <p>No blogs yet</p>
+    {% else %}
+
+        {% for blog in blogs %}
+            
+            <h1>  <a href=./blog?id={{blog.id}} > {{blog.title}}</a>  </h1>
+            
+            {{blog.body}}
+            <hr>
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}
