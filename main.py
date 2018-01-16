@@ -37,30 +37,29 @@ def blog():
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
 
-    
-
     if request.method == "POST":
-        entry_title = request.form['entry_title']
-        body_entry = request.form['body_entry'] 
+        title = request.form['title']
+        body = request.form['body'] 
         title_error = ''
         entry_error = ''    
         
 
-        if entry_title == '':
+        if title == '':
             title_error = "Please enter a title"
-            return render_template('newpost.html', title_error=title_error, entry_title=entry_title)
-        if body_entry == '':
+            return render_template('newpost.html', title_error=title_error, entry_error=entry_error, title=title, body=body)
+        if body == '':
             entry_error = "Please enter text"
-            return render_template('/newpost.html', title_error=title_error, body_entry=body_entry)
+            return render_template('newpost.html', title_error=title_error, entry_error=entry_error, title=title, body=body)
         if not title_error and not entry_error:
-            new_entry = Blog(entry_title, entry_body)
+            new_entry = Blog(title, body)
             db.session.add(new_entry)
+            db.session.flush()
             db.session.commit()
             post = Blog.query.filter_by(id=new_entry.id).first()
-            entry_title = post.title
-            body_entry = post.body
+            title = post.title
+            body = post.body
             
-            return render_template('entry.html', entry_title=entry_title, body_entry=body_entry)
+            return render_template('entry.html', title=title, body=body)
     return render_template('newpost.html')
         
                 
