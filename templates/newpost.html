@@ -1,15 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>What would you like to write?</h1>
-<form method="POST">
 
-        <label for="title_field">Entry Title</label>
-        <input id="title_field" name="title" type="text" value="{{entry_title}}">
-        <hr/>
-        <label for="body_field">Entry Body</label>
-        <textarea rows="4" cols="50" id="body_field" name="body" >{{body_entry}}</textarea>
-        <hr/>
+<div id="Links">
+        <a class="navlink" href="/blog">Blog Home Page</a>
+    </div>
+
+    <hr />
+
+<center><h1>Build-a-Blog</h1></center>
+
+<h2>What would you like to write?</h2>
+<form action="/newpost" method="POST">
+    <table>
+        <tr>
+            <td><label for="title_field">Enter Title</label></td>
+        </tr>
+        <tr>
+            <td>
+                <input name="entry_title" type="text" value="{{entry_title}}" />
+            </td>
+            <td><a class="error">{{title_error}}</td>
+        </tr>
+
+        <tr>
+            <td> <br> 
+            </td>
+        </tr>
+
+        <tr>
+            <td><label for="title_field">Entry Title</label></td>
+        </tr>
+
+        <tr>
+            <td>
+                <textarea name="body" rows=5 cols=50>{{body_entry}}</textarea>
+            </td>
+            <td><a class="error">{{entry_error}}</td>
+        </tr>
+
+    </table>
+    <br>
+
+        
     <input id="submit_button" type="submit" value="Save">
 </form>
 
