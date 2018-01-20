@@ -7,7 +7,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:mypassword
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
-
 class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -33,7 +32,6 @@ def blog():
 
         return render_template('entry.html', retrieve_id=retrieve_id, title=title, body=body)
 
-
 @app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
 
@@ -41,8 +39,7 @@ def newpost():
         title = request.form['title']
         body = request.form['body'] 
         title_error = ''
-        entry_error = ''    
-        
+        entry_error = ''      
 
         if title == '':
             title_error = "Please enter a title"
@@ -60,9 +57,7 @@ def newpost():
             body = post.body
             
             return render_template('entry.html', title=title, body=body)
-    return render_template('newpost.html')
-        
-                
+    return render_template('newpost.html')             
 
 if __name__ == "__main__":
     app.run()
